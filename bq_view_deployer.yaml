@@ -1,0 +1,7 @@
+# cloudbuild.yaml to create ephemeral deployment machine using python docker image and run bq_view_deployer.py
+steps:
+  - name: python:3.7
+    args: ['python', 'bq_view_deployer.py']
+    env:
+    - 'PROJECT=$PROJECT_ID'
+    id: bq_view_deployer
