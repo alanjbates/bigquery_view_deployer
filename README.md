@@ -20,3 +20,5 @@ for example take filename:  'weather_data.my_weather_aggregate.sql'
 dataset_name is the string before the first '.' eg: 'weather_data'
 view_name is the middle string eg: 'my_weather_aggregate'
 For each .sql in the repo, it will create or replace the view automatically.
+
+![Image of Architecture](https://raw.githubusercontent.com/alanjbates/bigquery_view_deployer/master/BigQuery_View_Deployer.png)
