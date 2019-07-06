@@ -1,6 +1,11 @@
-# BigQuery View Deployer
+# BigQuery View Deployer with source control and continuous deployment
 
-This will deploy any .sql in the repo to google cloud platform BigQuery using source control and continuous deployment.
+This is a simple process I created to deploy database sql views to Google BigQuery with the benefits of source control and the speed of continuous deployment.
+
+TLDR; Hooke up a Google Cloud Build trigger to your code repository of choice, In your cloudbuild.yaml file use the python 3.7 docker image and have it execute the bq_view_deployer.py script.  It will iterate through all .sql files in the repo and create/replace views in BigQuery.
+
+![Image of Architecture](https://raw.githubusercontent.com/alanjbates/bigquery_view_deployer/master/BigQuery_View_Deployer.png)
+
 
 Cloud Build Trigger
 Source code is here: 
@@ -20,5 +25,3 @@ for example take filename:  'weather_data.my_weather_aggregate.sql'
 dataset_name is the string before the first '.' eg: 'weather_data'
 view_name is the middle string eg: 'my_weather_aggregate'
 For each .sql in the repo, it will create or replace the view automatically.
-
-![Image of Architecture](https://raw.githubusercontent.com/alanjbates/bigquery_view_deployer/master/BigQuery_View_Deployer.png)
