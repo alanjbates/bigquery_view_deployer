@@ -1,4 +1,4 @@
-# Alan Bates BigQuery View Deployer with source control and continuous deployment
+# BigQuery View Deployer with source control and continuous deployment
 
 import subprocess
 import datetime
