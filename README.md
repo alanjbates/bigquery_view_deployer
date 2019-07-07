@@ -16,17 +16,14 @@ When a commit is merged to branch, cloud build creates a python docker image and
 
 Your GCP project cloud build service account needs to have the BigQuery Admin IAM role: _yourGCPprojectnumber_@cloudbuild.gserviceaccount.com
 
-When you create the triggers in each environment you can tie a specific branch to each project's trigger to manage.
-
-master branch = gcp-project-id-dev
-
-qa branch = gcp-project-id-qa
-
-prod branch = gcp-project-id-prod
+When you create the triggers in each environment you can tie a specific branch to each project's trigger to manage.  In my application we have GCP environments for Dev, QA, Prod each with thier own build triggers so you can deploy code up through the environments.
+* master branch = gcp-project-id-dev
+* qa branch = gcp-project-id-qa
+* prod branch = gcp-project-id-prod
 
 ### Python Script
  
-The bq_view_deployer.py script loops through each .sql file in the repo and will create/repalce them in BigQuery.
+The bq_view_deployer.py script loops through each .sql file in the repo and will create/replace them in BigQuery.
 
 It replaces dynamic variables in the .sql file text:
 * _RUN_PROJECT_ID with the current project id eg: gcp-project-id-prod
@@ -38,5 +35,11 @@ for example take filename:  'weather_data.my_weather_aggregate.sql'
 * view_name is the middle string eg: 'my_weather_aggregate'
 
 ### SQL files
+
+Due to a large number of views in many datasets, I created subfolders for each dataset.  This keeps me organized and the repo cleaner.
+
+The python script ignores the subfolder and still chooses the destination dataset from the sql filename.
+
+See the sql files in the weather_analysis folder.
 
 
