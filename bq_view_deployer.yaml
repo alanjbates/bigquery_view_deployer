@@ -1,7 +1,17 @@
-# cloudbuild.yaml to create ephemeral deployment machine using python docker image and run bq_view_deployer.py
+#cloud_build.yaml file that sets up the environment and runs bq_view_deplopyer.py
 steps:
+  - name: gcr.io/cloud-builders/gcloud
+    args: ['source', 'repos', 'clone', 'YOUR GOOGLE CLOUD SOURCE REPO NAME']
+  - name: python:3.7
+    args: ['pip', 'install', '-r', 'requirements.txt', '--user']
   - name: python:3.7
     args: ['python', 'bq_view_deployer.py']
     env:
     - 'PROJECT=$PROJECT_ID'
+    - 'REPO_NAME=$REPO_NAME'
+    - 'BRANCH_NAME=$BRANCH_NAME'
+    - 'TAG_NAME=$TAG_NAME'
+    - 'REVISION_ID=$REVISION_ID'
+    - 'COMMIT_SHA=$COMMIT_SHA'
+    - 'SHORT_SHA=$SHORT_SHA'
     id: bq_view_deployer
